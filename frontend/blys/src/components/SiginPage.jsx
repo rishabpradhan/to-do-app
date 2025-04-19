@@ -34,7 +34,7 @@ export default function SignInPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/login",
+        `${import.meta.env.VITE_API_BASE_URL}/api/login`,
         query,
         { withCredentials: true }
       );

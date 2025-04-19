@@ -71,12 +71,11 @@ export default function LoginPage() {
     setSubmit(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/register",
+        `${import.meta.env.VITE_API_BASE_URL}/api/register`,
         query,
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
+
       alert(response.data.message);
       setMessage(response.data.message);
       setQuery(initial);

@@ -12,9 +12,10 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userResponse = await axios.get("http://localhost:3000/api/me", {
-          withCredentials: true,
-        });
+        const userResponse = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/api/me`,
+          { withCredentials: true }
+        );
         setUser(userResponse.data);
         await fetchTasks();
       } catch (error) {
@@ -29,7 +30,9 @@ export default function Dashboard() {
 
   const fetchTasks = () => {
     axios
-      .get("http://localhost:3000/api/tasks", { withCredentials: true })
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/tasks`, {
+        withCredentials: true,
+      })
       .then((res) => setTasks(res.data))
       .catch((err) => console.error("Failed to fetch tasks:", err));
   };
@@ -39,7 +42,7 @@ export default function Dashboard() {
     if (!newTask.title) return alert("Title is required");
 
     axios
-      .post("http://localhost:3000/api/tasks", newTask, {
+      .post(`${import.meta.env.VITE_API_BASE_URL}/api/tasks`, newTask, {
         withCredentials: true,
       })
       .then((res) => {
@@ -51,7 +54,7 @@ export default function Dashboard() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3000/api/tasks/${id}`, {
+      .delete(`${import.meta.env.VITE_API_BASE_URL}/api/tasks/${id}`, {
         withCredentials: true,
       })
       .then(() => setTasks(tasks.filter((task) => task.id !== id)))
@@ -60,7 +63,13 @@ export default function Dashboard() {
 
   const handleLogout = () => {
     axios
-      .post("http://localhost:3000/api/logout", {}, { withCredentials: true })
+      .post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         navigate("/login");
       });
