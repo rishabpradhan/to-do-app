@@ -4,7 +4,7 @@ const db = require("../models/db");
 const userModel = {
   createUser: (firstname, lastname, password, email, contact, callback) => {
     const sql = `
-      INSERT INTO user (firstname, lastname, password, email, contact)
+      INSERT INTO users (firstname, lastname, password, email, contact)
       VALUES (?, ?, ?, ?, ?)
     `;
     db.query(
@@ -18,7 +18,7 @@ const userModel = {
   },
 
   findUserByEmail: (email, callback) => {
-    const sql = `SELECT id, firstname, lastname, email, password FROM user WHERE email = ?`;
+    const sql = `SELECT id, firstname, lastname, email, password FROM users WHERE email = ?`;
     db.query(sql, [email], (err, result) => {
       if (err) {
         console.error("Database error in findUserByEmail:", err);
@@ -30,8 +30,8 @@ const userModel = {
   },
 
   findUserById: (id, callback) => {
-    console.log(`Looking for user with ID: ${id} (type: ${typeof id})`);
-    const sql = `SELECT id, firstname, lastname, email FROM user WHERE id = ?`;
+    console.log(`Looking for users with ID: ${id} (type: ${typeof id})`);
+    const sql = `SELECT id, firstname, lastname, email FROM users WHERE id = ?`;
     db.query(sql, [id], (err, result) => {
       if (err) {
         console.error("Database error:", err);
