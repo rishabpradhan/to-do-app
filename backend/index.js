@@ -12,7 +12,10 @@ const PORT = process.env.PORT;
 
 app.use(
   cors({
-    origin: "https://to-do-app-chi-brown-91.vercel.app", //frontend port enabling cross-side-scripting
+    origin: [
+      "https://to-do-app-chi-brown-91.vercel.app",
+      "https://to-do-lt0ljud58-rishabs-projects-c13913d9.vercel.app",
+    ], //frontend port enabling cross-side-scripting
     credentials: true,
     exposedHeaders: ["set-cookie"], // Important for cookies
   })
