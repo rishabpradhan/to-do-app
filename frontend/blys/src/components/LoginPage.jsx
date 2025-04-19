@@ -36,12 +36,12 @@ export default function LoginPage() {
 
     if (!query.firstname.trim()) {
       newError.firstname = "Firstname is required";
-    } else if (!/^[a-zA-Z\s\-']{1,50}$/.test(query.name)) {
+    } else if (!/^[a-zA-Z\s\-']{1,50}$/.test(query.firstname)) {
       newError.firstname = "Invalid name";
     }
     if (!query.lastname.trim()) {
       newError.lastname = "Lastname is required";
-    } else if (!/^[a-zA-Z\s\-']{1,50}$/.test(query.name)) {
+    } else if (!/^[a-zA-Z\s\-']{1,50}$/.test(query.lastname)) {
       newError.lastname = "Invalid name";
     }
     if (!query.password.trim()) {
@@ -80,7 +80,7 @@ export default function LoginPage() {
       setMessage(response.data.message);
       setQuery(initial);
     } catch (error) {
-      setMessage(error.response?.data?.message || "Registration failed");
+      const msg = error.response?.data?.message || "Registration failed";
       setMessage(msg);
 
       // for duplicate email, contact and user registration error
