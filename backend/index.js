@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 app.use(
   cors({
-    origin: "http://localhost:5173", //frontend port enabling cross-side-scripting
+    origin: "https://to-do-app-chi-brown-91.vercel.app", //frontend port enabling cross-side-scripting
     credentials: true,
     exposedHeaders: ["set-cookie"], // Important for cookies
   })
